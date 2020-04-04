@@ -9,7 +9,10 @@
 #include "Player.h"
 #include "ExplosionManager.h"
 #include "BulletManager.h"
-
+#include "Enemy.h"
+#include "FinishLevel.h"
+#include "Label.h"
+#include "Powerup.h"
 
 
 class Level1Scene : public Scene
@@ -29,6 +32,14 @@ private:
 
 	Player* m_pPlayer;
 	Background* m_pBackground;
+	Label* m_pScoreLabel;
+
+	std::vector<Enemy*> m_pFirstWaveEnemies;
+	std::vector<Enemy*> m_pSecondWaveEnemies;
+	std::vector<Enemy*> m_pThirdWaveEnemies;
+	std::vector<Enemy*> m_pFourthWaveEnemies;
+	Powerup* m_pPowerup;
+	FinishLevel* m_pFinishLevel;
 };
 
 #endif /* defined (__LEVEL1_SCENE__) */

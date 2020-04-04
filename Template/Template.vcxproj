@@ -166,8 +166,11 @@
     <ClCompile Include="..\src\CollisionManager.cpp" />
     <ClCompile Include="..\src\DisplayObject.cpp" />
     <ClCompile Include="..\src\EndScene.cpp" />
+    <ClCompile Include="..\src\Enemy.cpp" />
+    <ClCompile Include="..\src\EnemyManager.cpp" />
     <ClCompile Include="..\src\Explosion.cpp" />
     <ClCompile Include="..\src\ExplosionManager.cpp" />
+    <ClCompile Include="..\src\FinishLevel.cpp" />
     <ClCompile Include="..\src\FontManager.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
@@ -175,7 +178,9 @@
     <ClCompile Include="..\src\Level1Scene.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
+    <ClCompile Include="..\src\Powerup.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
+    <ClCompile Include="..\src\GameManager.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
     <ClCompile Include="..\src\SpriteSheet.cpp" />
     <ClCompile Include="..\src\StartScene.cpp" />
@@ -199,8 +204,12 @@
     <ClInclude Include="..\src\Config.h" />
     <ClInclude Include="..\src\DisplayObject.h" />
     <ClInclude Include="..\src\EndScene.h" />
+    <ClInclude Include="..\src\Enemy.h" />
+    <ClInclude Include="..\src\EnemyManager.h" />
+    <ClInclude Include="..\src\EnemyMovementType.h" />
     <ClInclude Include="..\src\Explosion.h" />
     <ClInclude Include="..\src\ExplosionManager.h" />
+    <ClInclude Include="..\src\FinishLevel.h" />
     <ClInclude Include="..\src\FontManager.h" />
     <ClInclude Include="..\src\Frame.h" />
     <ClInclude Include="..\src\Game.h" />
@@ -211,8 +220,10 @@
     <ClInclude Include="..\src\Move.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\PlayerAnimationState.h" />
+    <ClInclude Include="..\src\Powerup.h" />
     <ClInclude Include="..\src\Scene.h" />
     <ClInclude Include="..\src\SceneState.h" />
+    <ClInclude Include="..\src\GameManager.h" />
     <ClInclude Include="..\src\ShapeType.h" />
     <ClInclude Include="..\src\SoundManager.h" />
     <ClInclude Include="..\src\SpriteSheet.h" />

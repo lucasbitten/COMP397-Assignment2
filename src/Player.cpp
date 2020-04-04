@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 
-Player::Player(): m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_maxSpeed(3), m_brakeSpeed(0.2f), m_shootRate(0.15f)
+Player::Player(): m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_maxSpeed(5), m_brakeSpeed(0.2f), m_shootRate(0.5f)
 {
 	TheTextureManager::Instance()->loadSpriteSheet(
 		"../Assets/sprites/atlas.txt",

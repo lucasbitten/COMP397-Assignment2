@@ -15,12 +15,12 @@ Bullet::Bullet() : m_currentFrame(0), m_bIsActive(false)
 	m_pSpriteSheet = TheTextureManager::Instance()->getSpriteSheet("spritesheet");
 
 	// set frame width
-	setWidth(100);
+	setWidth(15);
 
 	// set frame height
-	setHeight(25);
+	setHeight(4);
 
-	setPosition(glm::vec2(0, 0.0f));
+	setPosition(glm::vec2(2000, 2000.0f));
 	setVelocity(glm::vec2(8.0f, 0.0f));
 	setAcceleration(glm::vec2(0.0f, 0.0f));
 	setIsColliding(false);

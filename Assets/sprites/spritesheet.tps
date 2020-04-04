@@ -82,7 +82,7 @@
         <key>atfFormats</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png8</enum>
+        <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -186,6 +186,21 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../textures/Enemy.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>201,161,402,323</rect>
+                <key>scale9Paddings</key>
+                <rect>201,161,402,323</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../textures/Explosion1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -315,9 +330,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>19,19,37,39</rect>
+                <rect>19,21,37,41</rect>
                 <key>scale9Paddings</key>
-                <rect>19,19,37,39</rect>
+                <rect>19,21,37,41</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -360,9 +375,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>24,26,49,51</rect>
+                <rect>24,26,48,51</rect>
                 <key>scale9Paddings</key>
-                <rect>24,26,49,51</rect>
+                <rect>24,26,48,51</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -375,9 +390,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>26,27,52,55</rect>
+                <rect>24,24,47,49</rect>
                 <key>scale9Paddings</key>
-                <rect>26,27,52,55</rect>
+                <rect>24,24,47,49</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -477,24 +492,25 @@
             <filename>../textures/Helicopter7.png</filename>
             <filename>../textures/Helicopter8.png</filename>
             <filename>../textures/Helicopter9.png</filename>
-            <filename>../textures/Explosion1.png</filename>
             <filename>../textures/Explosion10.png</filename>
             <filename>../textures/Explosion11.png</filename>
             <filename>../textures/Explosion12.png</filename>
             <filename>../textures/Explosion13.png</filename>
             <filename>../textures/Explosion14.png</filename>
             <filename>../textures/Explosion15.png</filename>
+            <filename>../textures/Explosion8.png</filename>
+            <filename>../textures/Explosion9.png</filename>
+            <filename>../textures/Rock.png</filename>
+            <filename>../textures/bullet1.png</filename>
+            <filename>../textures/bullet2.png</filename>
+            <filename>../textures/Explosion1.png</filename>
             <filename>../textures/Explosion2.png</filename>
             <filename>../textures/Explosion3.png</filename>
             <filename>../textures/Explosion4.png</filename>
             <filename>../textures/Explosion5.png</filename>
             <filename>../textures/Explosion6.png</filename>
             <filename>../textures/Explosion7.png</filename>
-            <filename>../textures/Explosion8.png</filename>
-            <filename>../textures/Explosion9.png</filename>
-            <filename>../textures/Rock.png</filename>
-            <filename>../textures/bullet1.png</filename>
-            <filename>../textures/bullet2.png</filename>
+            <filename>../textures/Enemy.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

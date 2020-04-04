@@ -7,6 +7,9 @@ enum GameObjectType {
 	EXPLOSION,
 	BACKGROUND,
 	BULLET,
+	ENEMY,
+	POWERUP,
+	FINISH_LEVEL,
 	NUM_OF_TYPES
 };
 #endif /* defined (__GAME_OBJECT_TYPE__) */

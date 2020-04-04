@@ -91,7 +91,7 @@ void Explosion::m_buildAnimations()
 
 	for (int i = 0; i < 7; ++i)
 	{
-		explosionAnimation.frames.push_back(m_pSpriteSheet->getFrame("explosion" + std::to_string((i+1))));
+		explosionAnimation.frames.push_back(m_pSpriteSheet->getFrame("Explosion" + std::to_string((i+1))));
 
 	}
 

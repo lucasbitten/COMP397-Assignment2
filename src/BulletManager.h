@@ -23,6 +23,7 @@ public:
 	void update();
 	void draw();
 	Bullet* getBullet();
+	std::list<Bullet*> m_pBulletPool;
 
 private:
 
@@ -36,7 +37,6 @@ private:
 
 	static  BulletManager* s_pInstance;
 
-	std::list<Bullet*> m_pBulletPool;
 };
 
 #endif

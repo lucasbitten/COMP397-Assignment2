@@ -3,6 +3,11 @@
 #include <algorithm>
 
 
+#include "Bullet.h"
+#include "Enemy.h"
+#include "ExplosionManager.h"
+#include "GameManager.h"
+
 
 int CollisionManager::squaredDistance(glm::vec2 P1, glm::vec2 P2)
 {
@@ -13,6 +18,56 @@ int CollisionManager::squaredDistance(glm::vec2 P1, glm::vec2 P2)
 	return result;
 }
 
+bool CollisionManager::squaredRadiusCheckBullet(Bullet* bullet, Enemy* enemy)
+{
+	glm::vec2 P1 = bullet->getPosition();
+	glm::vec2 P2 = enemy->getPosition();
+	int halfHeights = (bullet->getHeight() + enemy->getHeight()) * 0.5f;
+
+	//if (glm::distance(P1, P2) < halfHeights) {
+
+	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
+
+
+		if (!enemy->getIsColliding()) {
+
+			enemy->setIsColliding(true);
+
+			switch (enemy->getType()) {
+			case ENEMY:
+			{
+				TheSoundManager::Instance()->playSound("explosion", 0);
+
+				std::cout << "acertou inimigo" << std::endl;
+				TheGameManager::Instance()->addScore(100);
+				auto explosion = ExplosionManager::Instance()->getExplosion();
+				explosion->activate();
+				explosion->setPosition(glm::vec2(bullet->getPosition()));
+				bullet->deactivate();
+				enemy->destroyed = true;
+				enemy->setPosition(glm::vec2(-10000, 1000));
+			}
+			break;
+			default:
+				//std::cout << "Collision with unknown type!" << std::endl;
+				break;
+			}
+
+			return true;
+		}
+				
+		return false;
+	}
+	else
+	{
+		enemy->setIsColliding(false);
+		return false;
+	}
+}
+
+
+
+
 bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* object2)
 {
 	glm::vec2 P1 = object1->getPosition();
@@ -22,6 +77,38 @@ bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* objec
 	//if (glm::distance(P1, P2) < halfHeights) {
 
 	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
+
+		if (object1->getType() == BULLET)
+		{
+			if (!object2->getIsColliding()) {
+
+				object2->setIsColliding(true);
+
+				switch (object2->getType()) {
+				case ENEMY:
+				{
+					std::cout << "acertou inimigo" << std::endl;
+					TheGameManager::Instance()->addScore(100);
+					auto explosion = ExplosionManager::Instance()->getExplosion();
+					explosion->activate();
+					explosion->setPosition(glm::vec2(object1->getPosition()));
+					object1->setPosition(glm::vec2(10000, 1000));
+					object2->setPosition(glm::vec2(-10000, 1000));
+
+				}
+				break;
+				default:
+					//std::cout << "Collision with unknown type!" << std::endl;
+					break;
+				}
+
+				return true;
+			}
+		}
+
+
+
+		
 		if (!object2->getIsColliding()) {
 
 			object2->setIsColliding(true);
@@ -68,6 +155,9 @@ bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
 		P1.y + P1height > P2.y
 		)
 	{
+
+
+		
 		if (!object2->getIsColliding()) {
 
 			object2->setIsColliding(true);
@@ -85,6 +175,7 @@ bool CollisionManager::AABBCheck(GameObject* object1, GameObject* object2)
 				//std::cout << "Collision with unknown type!" << std::endl;
 				break;
 			}
+			std::cout << "colidiu" << std::endl;
 
 			return true;
 		}
@@ -278,6 +369,7 @@ bool CollisionManager::circleAABBCheck(GameObject* object1, GameObject* object2)
 
 CollisionManager::CollisionManager()
 {
+
 }
 
 
