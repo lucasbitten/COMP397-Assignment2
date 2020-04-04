@@ -6,8 +6,9 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "ExplosionManager.h"
+#include "Game.h"
 #include "GameManager.h"
-
+#include "Player.h"
 
 int CollisionManager::squaredDistance(glm::vec2 P1, glm::vec2 P2)
 {
@@ -46,6 +47,8 @@ bool CollisionManager::squaredRadiusCheckBullet(Bullet* bullet, Enemy* enemy)
 				bullet->deactivate();
 				enemy->destroyed = true;
 				enemy->setPosition(glm::vec2(-10000, 1000));
+				GameManager::Instance()->addEnemiesDestroyed();
+
 			}
 			break;
 			default:
@@ -68,60 +71,52 @@ bool CollisionManager::squaredRadiusCheckBullet(Bullet* bullet, Enemy* enemy)
 
 
 
-bool CollisionManager::squaredRadiusCheck(GameObject* object1, GameObject* object2)
+bool CollisionManager::squaredRadiusCheck(Player* player, GameObject* object2)
 {
-	glm::vec2 P1 = object1->getPosition();
+	glm::vec2 P1 = player->getPosition();
 	glm::vec2 P2 = object2->getPosition();
-	int halfHeights = (object1->getHeight() + object2->getHeight()) * 0.5f;
+	int halfHeights = (player->getHeight() + object2->getHeight()) * 0.5f;
 
 	//if (glm::distance(P1, P2) < halfHeights) {
 
 	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
-
-		if (object1->getType() == BULLET)
-		{
-			if (!object2->getIsColliding()) {
-
-				object2->setIsColliding(true);
-
-				switch (object2->getType()) {
-				case ENEMY:
-				{
-					std::cout << "acertou inimigo" << std::endl;
-					TheGameManager::Instance()->addScore(100);
-					auto explosion = ExplosionManager::Instance()->getExplosion();
-					explosion->activate();
-					explosion->setPosition(glm::vec2(object1->getPosition()));
-					object1->setPosition(glm::vec2(10000, 1000));
-					object2->setPosition(glm::vec2(-10000, 1000));
-
-				}
-				break;
-				default:
-					//std::cout << "Collision with unknown type!" << std::endl;
-					break;
-				}
-
-				return true;
-			}
-		}
-
-
-
 		
 		if (!object2->getIsColliding()) {
 
 			object2->setIsColliding(true);
 
 			switch (object2->getType()) {
-			//case TARGET:
-			//	std::cout << "Collision with Target!" << std::endl;
-			//	TheSoundManager::Instance()->playSound("yay", 0);
-			//	break;
-			//case OBSTACLE:
-			//	std::cout << "Collision with Obstacle!" << std::endl;
-			//	TheSoundManager::Instance()->playSound("thunder", 0);
-			//	break;
+			case ENEMY:
+				{
+					std::cout << "Collision with Enemy!" << std::endl;
+
+					TheSoundManager::Instance()->playSound("explosion", 0);
+					auto explosion = ExplosionManager::Instance()->getExplosion();
+					explosion->activate();
+					explosion->setPosition(glm::vec2(object2->getPosition()));
+				}
+		
+				TheGameManager::Instance()->setPlayerHealth(TheGameManager::Instance()->getPlayerHealth() - 1);
+				TheSoundManager::Instance()->playSound("hit", 0);
+				player->hitFrame = TheGame::Instance()->getFrames();
+				player->invincible = true;
+				object2->setPosition(-5000, 5000);
+				break;
+			case POWERUP:
+				player->setSpeed(player->getSpeed() + 1);
+				object2->setPosition(glm::vec2(-1000, 1000));
+				player->invincible = true;
+
+				TheSoundManager::Instance()->playSound("powerup", 0);
+				GameManager::Instance()->addScore(500);
+				break;
+			case ENEMY_BULLET:
+				std::cout << "Player was hit!" << std::endl;
+				TheGameManager::Instance()->setPlayerHealth(TheGameManager::Instance()->getPlayerHealth() - 1);
+				TheSoundManager::Instance()->playSound("thunder", 0);
+				player->hitFrame = TheGame::Instance()->getFrames();
+
+				break;
 			default:
 				//std::cout << "Collision with unknown type!" << std::endl;
 				break;

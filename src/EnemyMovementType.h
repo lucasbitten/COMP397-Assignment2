@@ -4,6 +4,7 @@
 enum EnemyMovementType {
 	NO_MOVEMENT = -1,
 	SINE,
+	COSINE,
 	FOWARD,
 	BACKWARDS,
 	BACK_AND_FORTH,

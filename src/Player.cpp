@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 
-Player::Player(): m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_maxSpeed(5), m_brakeSpeed(0.2f), m_shootRate(0.5f)
+Player::Player(): m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_speed(5), m_brakeSpeed(0.2f), m_shootRate(0.5f)
 {
 	TheTextureManager::Instance()->loadSpriteSheet(
 		"../Assets/sprites/atlas.txt",
@@ -39,12 +39,12 @@ void Player::draw()
 	case PLAYER_RIGHT:
 		TheTextureManager::Instance()->playAnimation("spritesheet", m_pAnimations["player"],
 			getPosition().x, getPosition().y, m_currentFrame, 2.0f,
-			TheGame::Instance()->getRenderer(), 0, 255, true);
+			TheGame::Instance()->getRenderer(), 0, alphaValue, true);
 		break;
 	case PLAYER_LEFT:
 		TheTextureManager::Instance()->playAnimation("spritesheet", m_pAnimations["player"],
 			getPosition().x, getPosition().y, m_currentFrame, 2.0f,
-			TheGame::Instance()->getRenderer(), 0, 255, true, SDL_FLIP_HORIZONTAL);
+			TheGame::Instance()->getRenderer(), 0, alphaValue, true, SDL_FLIP_HORIZONTAL);
 		break;
 	}
 	
@@ -63,6 +63,23 @@ void Player::update()
 	
 	m_checkBounds();
 	brake(xBrakeDirection,yBrakeDirection);
+	
+	if (invincible)
+	{
+		if ( hitFrame + 100 < TheGame::Instance()->getFrames() )
+		{
+			invincible = false;
+
+		}
+		alphaValue = 255 * (sin(TheGame::Instance()->getFrames() * 0.5 ) + 1) * 0.5f;
+
+	}
+	else
+	{
+		alphaValue = 255;
+	}
+
+	
 }
 
 void Player::clean()
@@ -77,27 +94,27 @@ void Player::move(Move newMove)
 	switch (newMove)
 	{
 	case UP:
-		if(getVelocity().y > -m_maxSpeed)
+		if(getVelocity().y > -m_speed)
 		{
-			setVelocity(glm::vec2(getVelocity().x, -1.0f * m_maxSpeed));
+			setVelocity(glm::vec2(getVelocity().x, -1.0f * m_speed));
 		}
 		break;
 	case DOWN:
-		if (getVelocity().y < m_maxSpeed)
+		if (getVelocity().y < m_speed)
 		{
-			setVelocity(glm::vec2(getVelocity().x, 1.0f * m_maxSpeed));
+			setVelocity(glm::vec2(getVelocity().x, 1.0f * m_speed));
 		}
 		break;
 	case LEFT:
-		if (getVelocity().x > -m_maxSpeed)
+		if (getVelocity().x > -m_speed)
 		{
-			setVelocity(glm::vec2(-1.0f * m_maxSpeed, getVelocity().y));
+			setVelocity(glm::vec2(-1.0f * m_speed, getVelocity().y));
 		}
 		break;
 	case RIGHT:
-		if (getVelocity().x < m_maxSpeed)
+		if (getVelocity().x < m_speed)
 		{
-			setVelocity(glm::vec2(1.0f * m_maxSpeed, getVelocity().y));
+			setVelocity(glm::vec2(1.0f * m_speed, getVelocity().y));
 		}
 		break;
 	}
@@ -195,6 +212,17 @@ void Player::setShootRate(float shootRate)
 {
 	m_shootRate = shootRate;
 }
+
+float Player::getSpeed()
+{
+	return m_speed;
+}
+
+void Player::setSpeed(float speed)
+{
+	m_speed = speed;
+}
+
 
 void Player::m_buildAnimations()
 {

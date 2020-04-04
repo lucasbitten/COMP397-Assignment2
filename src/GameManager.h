@@ -20,12 +20,24 @@ public:
 
 	int getScore();
 	void addScore(int score);
-	
 
+	int getEnemiesCount() const;
+	void addEnemiesCount();
+
+	int getEnemiesDestroyed();
+	void addEnemiesDestroyed();
+
+	int getPlayerHealth();
+	void setPlayerHealth(int health);
+	
+	void reset();
+	
 private:
 
 	int m_score = 0;
-
+	int m_enemiesCount = 0;
+	int m_enemiesDestroyed = 0;
+	int m_playerHealth = 3;
 	GameManager();
 	~GameManager();
 

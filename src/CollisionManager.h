@@ -9,6 +9,7 @@
 #include <GLM/gtx/norm.hpp>
 #include "SoundManager.h"
 
+class Player;
 class Bullet;
 class Enemy;
 
@@ -16,7 +17,7 @@ class CollisionManager
 {
 public:
 	static int squaredDistance(glm::vec2 P1, glm::vec2 P2);
-	static bool squaredRadiusCheck(GameObject* object1, GameObject* object2);
+	static bool squaredRadiusCheck(Player* player, GameObject* object2);
 	static bool squaredRadiusCheckBullet(Bullet* bullet, Enemy* enemy);
 
 	static bool AABBCheck(GameObject* object1, GameObject* object2);

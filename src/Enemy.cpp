@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include "Util.h"
 
 Enemy::Enemy() : m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_speed(4), m_shootRate(0.15f)
 {
@@ -22,7 +23,7 @@ Enemy::Enemy() : m_currentFrame(0), m_currentAnimationState(PLAYER_RIGHT), m_spe
 	setAcceleration(glm::vec2(0.0f, 0.0f));
 	setIsColliding(false);
 	setType(ENEMY);
-
+	offset = glm::vec2(Util::RandomRange(0, 2), Util::RandomRange(0, 30));
 	m_buildAnimations();
 }
 
@@ -44,7 +45,7 @@ void Enemy::draw()
 void Enemy::update()
 {
 
-	if(getPosition().x > Config::SCREEN_WIDTH && m_movementType != BACKWARDS)
+	if(getPosition().x > (Config::SCREEN_WIDTH + 50) && m_movementType != BACKWARDS)
 	{
 		move(FOWARD);
 	}else
@@ -74,7 +75,11 @@ void Enemy::move(EnemyMovementType movement)
 		{
 		case SINE:
 			setVelocity(glm::vec2(-m_speed, 0));
-			setPosition(glm::vec2(getPosition().x + getVelocity().x, 300 + 250 * sin(frame * 0.04)));
+			setPosition(glm::vec2(getPosition().x + getVelocity().x, startPosition.y + 100 * sin(frame * 0.05)));
+			break;
+		case COSINE:
+			setVelocity(glm::vec2(-m_speed, 0));
+			setPosition(glm::vec2(getPosition().x + getVelocity().x, startPosition.y + 100 * cos(frame * 0.05)));
 			break;
 		case BACK_AND_FORTH:
 			setVelocity(glm::vec2(-m_speed, 0));

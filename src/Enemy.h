@@ -38,9 +38,11 @@ public:
 	void setSpeed(float speed);
 
 	void setMovementType(EnemyMovementType movementType);
+	glm::vec2 startPosition;
 	bool destroyed;
 private:
 
+	glm::vec2 offset;
 	float m_shootRate;
 	float m_shootTime;
 

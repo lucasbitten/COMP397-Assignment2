@@ -10,6 +10,8 @@ enum GameObjectType {
 	ENEMY,
 	POWERUP,
 	FINISH_LEVEL,
+	ENEMY_BULLET,
+	HEART,
 	NUM_OF_TYPES
 };
 #endif /* defined (__GAME_OBJECT_TYPE__) */

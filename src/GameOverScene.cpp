@@ -1,35 +1,36 @@
-#include "EndScene.h"
+#include "GameOverScene.h"
 #include <algorithm>
 #include "Game.h"
 #include "GameManager.h"
 #include "glm/gtx/string_cast.hpp"
 
-EndScene::EndScene()
+GameOverScene::GameOverScene()
 {
-	EndScene::start();
+	GameOverScene::start();
 }
 
-EndScene::~EndScene()
+GameOverScene::~GameOverScene()
 = default;
 
-void EndScene::draw()
+void GameOverScene::draw()
 {
 	m_label->draw();
 	m_score->draw();
 	m_enemiesDestroyed->draw();
+	m_tryAgain->draw();
 }
 
-void EndScene::update()
+void GameOverScene::update()
 {
 }
 
-void EndScene::clean()
+void GameOverScene::clean()
 {
 
 	removeAllChildren();
 }
 
-void EndScene::handleEvents()
+void GameOverScene::handleEvents()
 {
 	SDL_Event event;
 	if (SDL_PollEvent(&event))
@@ -59,19 +60,24 @@ void EndScene::handleEvents()
 	}
 }
 
-void EndScene::start()
+void GameOverScene::start()
 {
 	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_label = new Label("Level Completed!", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_label = new Label("GAME OVER", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
 	m_label->setParent(this);
 	addChild(m_label);
 
-	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "Dock51", 40, blue, glm::vec2(30.0, 275.0f),0,false);
+	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "Dock51", 40, blue, glm::vec2(400.0, 275.0f), 0, true);
 	m_score->setParent(this);
 	addChild(m_score);
 
-	
-	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()) , "Dock51", 40, blue, glm::vec2(30.0f, 325.0f),0,false);
+
+	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()), "Dock51", 40, blue, glm::vec2(400.0f, 325.0f), 0, true);
 	m_enemiesDestroyed->setParent(this);
 	addChild(m_enemiesDestroyed);
+
+	m_tryAgain = new Label("Press 1 to try again!", "Dock51", 40, blue, glm::vec2(400.0f, 500.0f), 0, true);
+	m_tryAgain->setParent(this);
+	addChild(m_tryAgain);
+	
 }

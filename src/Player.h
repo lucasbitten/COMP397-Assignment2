@@ -36,6 +36,12 @@ public:
 	void setShootTime(float shootTime);
 	void setShootRate(float shootRate);
 
+	float getSpeed();
+	void setSpeed(float speed);
+
+	bool invincible = false;
+	glm::uint32 hitFrame;
+
 private:
 
 	float m_shootRate;
@@ -43,9 +49,10 @@ private:
 	
 	void m_buildAnimations();
 	void m_checkBounds();
-	float m_maxSpeed;
+	float m_speed;
 	float m_brakeSpeed;
 
+	float alphaValue = 255.0f;
 
 	SpriteSheet* m_pSpriteSheet;
 

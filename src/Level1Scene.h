@@ -11,6 +11,7 @@
 #include "BulletManager.h"
 #include "Enemy.h"
 #include "FinishLevel.h"
+#include "Heart.h"
 #include "Label.h"
 #include "Powerup.h"
 
@@ -28,6 +29,10 @@ public:
 	virtual void handleEvents() override;
 	virtual void start() override;
 private:
+
+	void buildEnemies();
+	void checkCollisions();
+	
 	glm::vec2 m_mousePosition;
 
 	Player* m_pPlayer;
@@ -38,6 +43,7 @@ private:
 	std::vector<Enemy*> m_pSecondWaveEnemies;
 	std::vector<Enemy*> m_pThirdWaveEnemies;
 	std::vector<Enemy*> m_pFourthWaveEnemies;
+	std::vector<Heart*> m_pPlayerHealth;
 	Powerup* m_pPowerup;
 	FinishLevel* m_pFinishLevel;
 };
