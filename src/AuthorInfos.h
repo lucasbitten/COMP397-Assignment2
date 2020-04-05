@@ -18,4 +18,5 @@
 * 2020/04/04	Lucas	   3	[ADD] Game Over screen, Collision with enemies
 * 2020/04/05	Lucas	   4	[ADD] Music, Buttons
 * 2020/04/05	Lucas	   5	Change fonts
+* 2020/04/05	Lucas	   6	Add final boss and cheat codes
 / **********************************************************************/

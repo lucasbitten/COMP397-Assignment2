@@ -68,6 +68,78 @@ bool CollisionManager::squaredRadiusCheckBullet(Bullet* bullet, Enemy* enemy)
 	}
 }
 
+bool CollisionManager::squaredRadiusCheckBullet(Bullet* bullet, Boss* boss)
+{
+	glm::vec2 P1 = bullet->getPosition();
+	glm::vec2 P2 = boss->getPosition();
+	int halfHeights = (bullet->getHeight() + boss->getHeight()) * 0.5f;
+
+	//if (glm::distance(P1, P2) < halfHeights) {
+
+	if (CollisionManager::squaredDistance(P1, P2) < (halfHeights * halfHeights)) {
+
+
+		if (!boss->getIsColliding()) {
+
+			boss->setIsColliding(true);
+
+			switch (boss->getType()) {
+			case BOSS:
+			{
+				std::cout << "acertou Boss" << std::endl;
+
+					if (boss->getHealth() > 0)
+					{
+						boss->setHealth(boss->getHealth() - 1);
+						auto explosion = ExplosionManager::Instance()->getExplosion();
+						explosion->activate();
+						explosion->setPosition(glm::vec2(bullet->getPosition()));
+					} else
+					{
+						TheGameManager::Instance()->addScore(1000);
+						auto explosion = ExplosionManager::Instance()->getExplosion();
+						explosion->activate();
+						explosion->setPosition(glm::vec2(bullet->getPosition()));
+						auto explosion2 = ExplosionManager::Instance()->getExplosion();
+						explosion2->activate();
+						explosion2->setPosition(glm::vec2(boss->getPosition() + glm::vec2(50, 50) ));
+						auto explosion3 = ExplosionManager::Instance()->getExplosion();
+						explosion3->activate();
+						explosion3->setPosition(glm::vec2(boss->getPosition() + glm::vec2(-50, 50)));
+						auto explosion4 = ExplosionManager::Instance()->getExplosion();
+						explosion4->activate();
+						explosion4->setPosition(glm::vec2(boss->getPosition() + glm::vec2(-50, -50)));
+						auto explosion5 = ExplosionManager::Instance()->getExplosion();
+						explosion5->activate();
+						explosion5->setPosition(glm::vec2(boss->getPosition() + glm::vec2(50, -50)));
+						boss->destroyed = true;
+						boss->setPosition(glm::vec2(-10000, 1000));
+						TheGameManager::Instance()->bossDestroyed = true;
+					}
+
+				TheSoundManager::Instance()->playSound("explosion", 0);
+				bullet->deactivate();
+
+			}
+			break;
+			default:
+				//std::cout << "Collision with unknown type!" << std::endl;
+				break;
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+	else
+	{
+		boss->setIsColliding(false);
+		return false;
+	}
+}
+
+
 
 
 
@@ -86,6 +158,21 @@ bool CollisionManager::squaredRadiusCheck(Player* player, GameObject* object2)
 			object2->setIsColliding(true);
 
 			switch (object2->getType()) {
+			case BOSS:
+			{
+				std::cout << "Collision with Enemy!" << std::endl;
+
+				TheSoundManager::Instance()->playSound("explosion", 0);
+				auto explosion = ExplosionManager::Instance()->getExplosion();
+				explosion->activate();
+				explosion->setPosition(glm::vec2(player->getPosition()));
+			}
+
+			TheGameManager::Instance()->setPlayerHealth(TheGameManager::Instance()->getPlayerHealth() - 1);
+			TheSoundManager::Instance()->playSound("hit", 0);
+			player->hitFrame = TheGame::Instance()->getFrames();
+			player->invincible = true;
+			break;
 			case ENEMY:
 				{
 					std::cout << "Collision with Enemy!" << std::endl;
@@ -114,7 +201,6 @@ bool CollisionManager::squaredRadiusCheck(Player* player, GameObject* object2)
 				GameManager::Instance()->addScore(100);
 				object2->setPosition(glm::vec2(-1000, 1000));
 				TheSoundManager::Instance()->playSound("coin", 0);
-
 				
 				
 				break;

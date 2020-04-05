@@ -40,7 +40,7 @@ Bullet* BulletManager::getBullet()
 	return bullet;
 }
 
-BulletManager::BulletManager() : m_bulletNumber(20)
+BulletManager::BulletManager() : m_bulletNumber(60)
 {
 	m_buildBulletPool();
 }

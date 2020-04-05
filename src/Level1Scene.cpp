@@ -44,6 +44,11 @@ void Level1Scene::update()
 	
 	checkCollisions();
 
+	if (TheGameManager::Instance()->bossDestroyed && !m_bBossDestroyed)
+	{
+		m_bBossDestroyed = true;
+		m_pFinishLevel->setVelocity(glm::vec2(-5, 0));
+	}
 
 	
 	if (m_pPlayer->getPosition().x > m_pFinishLevel->getPosition().x)
@@ -104,6 +109,10 @@ void Level1Scene::handleEvents()
 	if (state[SDL_SCANCODE_D]) {
 		m_pPlayer->move(RIGHT);
 		m_pPlayer->xBrakeDirection = EMPTY;
+	}
+
+	if (state[SDL_SCANCODE_L] && state[SDL_SCANCODE_U] && state[SDL_SCANCODE_C]) {
+		m_pPlayer->setShootRate(0.05f);
 	}
 	
 	while (SDL_PollEvent(&event))
@@ -212,7 +221,11 @@ void Level1Scene::start()
 	addChild(m_pScoreLabel);
 
 	m_pFinishLevel = new FinishLevel();
-	m_pFinishLevel->setPosition(glm::vec2(8000,0));
+	m_pFinishLevel->setPosition(glm::vec2(1000,0));
+
+	m_pBoss = new Boss();
+	m_pBoss->setPosition(glm::vec2(8000, 300));
+	addChild(m_pBoss);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -433,6 +446,8 @@ void Level1Scene::checkCollisions()
 	{
 		if (bullet->getPosition().x < Config::SCREEN_WIDTH)
 		{
+			CollisionManager::squaredRadiusCheckBullet(bullet, m_pBoss);
+
 			for (auto enemy : m_pFirstWaveEnemies)
 			{
 				CollisionManager::squaredRadiusCheckBullet(bullet, enemy);
@@ -491,6 +506,7 @@ void Level1Scene::checkCollisions()
 		}
 	}
 	
+	CollisionManager::squaredRadiusCheck(m_pPlayer, m_pBoss);
 
 
 }

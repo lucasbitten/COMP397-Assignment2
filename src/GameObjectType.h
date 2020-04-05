@@ -19,6 +19,7 @@ enum GameObjectType {
 	BACK_TO_MENU_BUTTON,
 	CONTROLS,
 	COIN,
+	BOSS,
 	NUM_OF_TYPES
 };
 #endif /* defined (__GAME_OBJECT_TYPE__) */

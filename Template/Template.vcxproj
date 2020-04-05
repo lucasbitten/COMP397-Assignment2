@@ -161,6 +161,7 @@
     <ClCompile Include="..\include\IMGUI\imgui_widgets.cpp" />
     <ClCompile Include="..\include\IMGUI_SDL\imgui_sdl.cpp" />
     <ClCompile Include="..\src\Background.cpp" />
+    <ClCompile Include="..\src\Boss.cpp" />
     <ClCompile Include="..\src\Bullet.cpp" />
     <ClCompile Include="..\src\BulletManager.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="..\src\Animation.h" />
     <ClInclude Include="..\src\AuthorInfos.h" />
     <ClInclude Include="..\src\Background.h" />
+    <ClInclude Include="..\src\Boss.h" />
     <ClInclude Include="..\src\Bullet.h" />
     <ClInclude Include="..\src\BulletManager.h" />
     <ClInclude Include="..\src\Button.h" />

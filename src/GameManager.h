@@ -31,7 +31,7 @@ public:
 	void setPlayerHealth(int health);
 	
 	void reset();
-	
+	bool bossDestroyed = false;
 private:
 
 	int m_score = 0;

@@ -122,12 +122,12 @@ void EndScene::start()
 	m_label->setParent(this);
 	addChild(m_label);
 
-	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "BomberEscort", 40, red, glm::vec2(30.0, 275.0f),0,false);
+	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "BomberEscort", 40, red, glm::vec2(400.0, 275.0f),0, true);
 	m_score->setParent(this);
 	addChild(m_score);
 
 	
-	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()) , "BomberEscort", 40, red, glm::vec2(30.0f, 325.0f),0,false);
+	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()) , "BomberEscort", 40, red, glm::vec2(400.0f, 325.0f),0,true);
 	m_enemiesDestroyed->setParent(this);
 	addChild(m_enemiesDestroyed);
 

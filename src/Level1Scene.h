@@ -3,6 +3,7 @@
 #define __LEVEL1_SCENE__
 
 #include "Background.h"
+#include "Boss.h"
 #include "Scene.h"
 
 
@@ -47,6 +48,10 @@ private:
 	std::vector<Enemy*> m_pThirdWaveEnemies;
 	std::vector<Enemy*> m_pFourthWaveEnemies;
 	std::vector<Heart*> m_pPlayerHealth;
+
+	Boss* m_pBoss;
+	bool m_bBossDestroyed;
+	
 	Powerup* m_pPowerup;
 	FinishLevel* m_pFinishLevel;
 };

@@ -7,7 +7,7 @@ FinishLevel::FinishLevel()
 	setPosition(glm::vec2(0, 0));
 	setIsColliding(false);
 	setType(GameObjectType::FINISH_LEVEL);
-	setVelocity(glm::vec2(-5.0f, 0.0f));
+	setVelocity(glm::vec2(0.0f, 0.0f));
 
 }
 
