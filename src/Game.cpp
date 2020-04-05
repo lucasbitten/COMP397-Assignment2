@@ -6,6 +6,7 @@
 #include "GameOverScene.h"
 #include "glm/gtx/string_cast.hpp"
 #include "IMGUI_SDL/imgui_sdl.h"
+#include "InstructionsScene.h"
 #include "TextureManager.h"
 
 
@@ -146,6 +147,10 @@ void Game::changeSceneState(const SceneState new_state)
 		case SceneState::START_SCENE:
 			m_currentScene = new StartScene();
 			std::cout << "start scene activated" << std::endl;
+			break;
+		case SceneState::INSTRUCTIONS_SCENE:
+			m_currentScene = new InstructionsScene();
+			std::cout << "Instructions scene activated" << std::endl;
 			break;
 		case SceneState::LEVEL1_SCENE:
 			m_currentScene = new Level1Scene();

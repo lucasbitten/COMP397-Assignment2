@@ -13,13 +13,34 @@ StartScene::~StartScene()
 
 void StartScene::draw()
 {
-	m_pStartLabel->draw();
-	m_pInstructionsLabel->draw();
+	drawDisplayList();
 
 }
 
 void StartScene::update()
 {
+	m_pStartButton->setMousePosition(m_mousePosition);
+	m_pQuitButton->setMousePosition(m_mousePosition);
+	m_pInstructionsButton->setMousePosition(m_mousePosition);
+
+	if(m_pStartButton->ButtonClick())
+	{
+		return;
+	}
+	
+	
+	if(m_pQuitButton->ButtonClick())
+	{
+		return;
+	}
+
+
+	if (m_pInstructionsButton->ButtonClick())
+	{
+		return;
+	}
+	
+	
 }
 
 void StartScene::clean()
@@ -28,10 +49,11 @@ void StartScene::clean()
 	
 	delete m_pStartLabel;
 	m_pStartLabel = nullptr;
-	
-	delete m_pInstructionsLabel;
-	m_pInstructionsLabel = nullptr;
 
+	delete m_pStartButton;
+	delete m_pQuitButton;
+
+	
 	removeAllChildren();
 }
 
@@ -44,6 +66,39 @@ void StartScene::handleEvents()
 		{
 		case SDL_QUIT:
 			TheGame::Instance()->quit();
+			break;
+		case SDL_MOUSEMOTION:
+			m_mousePosition.x = event.motion.x;
+			m_mousePosition.y = event.motion.y;
+			/*std::cout << "Mouse X: " << m_mousePosition.x << std::endl;
+			std::cout << "Mouse Y: " << m_mousePosition.y << std::endl;
+			std::cout << "---------------------------------------------" << std::endl;*/
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			std::cout << "click" << std::endl;
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(true);
+				m_pQuitButton->setMouseButtonClicked(true);
+				m_pInstructionsButton->setMouseButtonClicked(true);
+
+				break;
+			}
+
+			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pStartButton->setMouseButtonClicked(false);
+				m_pQuitButton->setMouseButtonClicked(false);
+				m_pInstructionsButton->setMouseButtonClicked(false);
+
+				
+				break;
+			}
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
@@ -68,14 +123,38 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
+
+	TheSoundManager::Instance()->load("../Assets/audio/Music.mp3",
+		"music", sound_type::SOUND_MUSIC);
+	TheSoundManager::Instance()->playMusic("music", 1);
+
+	m_pBackground = new Background();
+	addChild(m_pBackground);
+	
+	const SDL_Color white = { 255, 255, 255, 255 };
+	m_pStartLabel = new Label("Heli-Buffly", "Consolas", 80, white, glm::vec2(400.0f, 60.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
-	m_pInstructionsLabel = new Label("Press 1 to Play", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
-	m_pInstructionsLabel->setParent(this);
-	addChild(m_pInstructionsLabel);
+
+	m_pStartButton = new StartButton();
+	m_pStartButton->setPosition(Config::SCREEN_WIDTH * 0.5, 300);
+	addChild(m_pStartButton);
+
+	m_pInstructionsButton = new InstructionsButton();
+	m_pInstructionsButton->setPosition(Config::SCREEN_WIDTH * 0.5, 400);
+	addChild(m_pInstructionsButton);
 	
+	m_pQuitButton = new QuitButton();
+	m_pQuitButton->setPosition(Config::SCREEN_WIDTH * 0.5, 500);
+	addChild(m_pQuitButton);
+	
+
 }
 
+glm::vec2 StartScene::getMousePosition() const
+{
+	TheSoundManager::Instance()->load("../Assets/audio/door-01.flac", "dr", SOUND_SFX);
+
+	return m_mousePosition;
+}

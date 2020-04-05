@@ -31,6 +31,9 @@
     <Filter Include="Enums">
       <UniqueIdentifier>{69bcf506-2bc6-4cdf-8f1d-6d6aff28c8e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Objects\Buttons">
+      <UniqueIdentifier>{98d26e7f-17de-4d87-9445-48a652676fcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -131,6 +134,33 @@
     </ClCompile>
     <ClCompile Include="..\src\GameOverScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PlayAgain.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Button.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\StartButton.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuitButton.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstructionsButton.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TryAgainButton.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\BackToMenuButton.cpp">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InstructionsScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Controls.cpp">
+      <Filter>Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +295,33 @@
     </ClInclude>
     <ClInclude Include="..\src\GameOverScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayAgain.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Button.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StartButton.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuitButton.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\InstructionsButton.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TryAgainButton.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BackToMenuButton.h">
+      <Filter>Game Objects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\InstructionsScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Controls.h">
+      <Filter>Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

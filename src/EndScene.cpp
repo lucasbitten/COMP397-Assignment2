@@ -14,13 +14,34 @@ EndScene::~EndScene()
 
 void EndScene::draw()
 {
+	m_pBackground->draw();
+	
 	m_label->draw();
 	m_score->draw();
 	m_enemiesDestroyed->draw();
+	
+	m_pTryAgainButton->draw();
+	m_pBackToMenuButton->draw();
 }
 
 void EndScene::update()
 {
+
+	m_pBackToMenuButton->setMousePosition(m_mousePosition);
+
+
+	if (m_pBackToMenuButton->ButtonClick())
+	{
+		return;
+	}
+
+	m_pTryAgainButton->setMousePosition(m_mousePosition);
+
+
+	if (m_pTryAgainButton->ButtonClick())
+	{
+		return;
+	}
 }
 
 void EndScene::clean()
@@ -38,6 +59,38 @@ void EndScene::handleEvents()
 		{
 		case SDL_QUIT:
 			TheGame::Instance()->quit();
+			break;
+		case SDL_MOUSEMOTION:
+			m_mousePosition.x = event.motion.x;
+			m_mousePosition.y = event.motion.y;
+			/*std::cout << "Mouse X: " << m_mousePosition.x << std::endl;
+			std::cout << "Mouse Y: " << m_mousePosition.y << std::endl;
+			std::cout << "---------------------------------------------" << std::endl;*/
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			std::cout << "click" << std::endl;
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pBackToMenuButton->setMouseButtonClicked(true);
+				m_pTryAgainButton->setMouseButtonClicked(true);
+
+
+				break;
+			}
+
+			break;
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_pBackToMenuButton->setMouseButtonClicked(false);
+				m_pTryAgainButton->setMouseButtonClicked(false);
+
+
+				break;
+			}
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
@@ -61,17 +114,36 @@ void EndScene::handleEvents()
 
 void EndScene::start()
 {
-	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_label = new Label("Level Completed!", "Dock51", 80, blue, glm::vec2(400.0f, 40.0f));
+	m_pBackground = new Background();
+	addChild(m_pBackground);
+	
+	const SDL_Color white = { 255, 255, 255, 255 };
+	m_label = new Label("Level Completed!", "Consolas", 80, white, glm::vec2(400.0f, 60.0f));
 	m_label->setParent(this);
 	addChild(m_label);
 
-	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "Dock51", 40, blue, glm::vec2(30.0, 275.0f),0,false);
+	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "Consolas", 40, white, glm::vec2(30.0, 275.0f),0,false);
 	m_score->setParent(this);
 	addChild(m_score);
 
 	
-	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()) , "Dock51", 40, blue, glm::vec2(30.0f, 325.0f),0,false);
+	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()) , "Consolas", 40, white, glm::vec2(30.0f, 325.0f),0,false);
 	m_enemiesDestroyed->setParent(this);
 	addChild(m_enemiesDestroyed);
+
+	m_pBackToMenuButton = new BackToMenuButton();
+	m_pBackToMenuButton->setPosition(glm::vec2(520, 500));
+	addChild(m_pBackToMenuButton);
+
+	m_pTryAgainButton = new TryAgainButton();
+	m_pTryAgainButton->setPosition(glm::vec2(250, 500));
+	addChild(m_pTryAgainButton);
+
+}
+
+glm::vec2 EndScene::getMousePosition() const
+{
+	TheSoundManager::Instance()->load("../Assets/audio/door-01.flac", "dr", SOUND_SFX);
+
+	return m_mousePosition;
 }
