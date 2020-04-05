@@ -21,6 +21,8 @@ bool InstructionsButton::ButtonClick()
 	{
 		if(!m_isClicked)
 		{
+			TheSoundManager::Instance()->playSound("click", 0);
+
 			TheGame::Instance()->changeSceneState(SceneState::INSTRUCTIONS_SCENE);
 			m_isClicked = true;
 		}

@@ -18,6 +18,7 @@ enum GameObjectType {
 	TRY_AGAIN_BUTTON,
 	BACK_TO_MENU_BUTTON,
 	CONTROLS,
+	COIN,
 	NUM_OF_TYPES
 };
 #endif /* defined (__GAME_OBJECT_TYPE__) */

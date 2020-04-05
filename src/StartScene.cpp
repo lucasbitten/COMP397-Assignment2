@@ -126,13 +126,18 @@ void StartScene::start()
 
 	TheSoundManager::Instance()->load("../Assets/audio/Music.mp3",
 		"music", sound_type::SOUND_MUSIC);
+
+
+	TheSoundManager::Instance()->load("../Assets/audio/Click.mp3",
+		"click", sound_type::SOUND_SFX);
+	
 	TheSoundManager::Instance()->playMusic("music", 1);
 
 	m_pBackground = new Background();
 	addChild(m_pBackground);
 	
-	const SDL_Color white = { 255, 255, 255, 255 };
-	m_pStartLabel = new Label("Heli-Buffly", "Consolas", 80, white, glm::vec2(400.0f, 60.0f));
+	const SDL_Color red = { 255, 10, 10, 255 };
+	m_pStartLabel = new Label("Heli-Buffly", "BomberEscort", 80, red, glm::vec2(400.0f, 80.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 

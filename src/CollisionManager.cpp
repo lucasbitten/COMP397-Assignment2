@@ -110,6 +110,14 @@ bool CollisionManager::squaredRadiusCheck(Player* player, GameObject* object2)
 				TheSoundManager::Instance()->playSound("powerup", 0);
 				GameManager::Instance()->addScore(500);
 				break;
+			case COIN:
+				GameManager::Instance()->addScore(100);
+				object2->setPosition(glm::vec2(-1000, 1000));
+				TheSoundManager::Instance()->playSound("coin", 0);
+
+				
+				
+				break;
 			case ENEMY_BULLET:
 				std::cout << "Player was hit!" << std::endl;
 				TheGameManager::Instance()->setPlayerHealth(TheGameManager::Instance()->getPlayerHealth() - 1);

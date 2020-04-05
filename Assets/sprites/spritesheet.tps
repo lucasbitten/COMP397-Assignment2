@@ -186,6 +186,68 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../textures/Coin1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,9,18,18</rect>
+                <key>scale9Paddings</key>
+                <rect>9,9,18,18</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../textures/Coin2.png</key>
+            <key type="filename">../textures/Coin6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,9,16,18</rect>
+                <key>scale9Paddings</key>
+                <rect>8,9,16,18</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../textures/Coin3.png</key>
+            <key type="filename">../textures/Coin5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,9,9,18</rect>
+                <key>scale9Paddings</key>
+                <rect>5,9,9,18</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../textures/Coin4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,9,3,18</rect>
+                <key>scale9Paddings</key>
+                <rect>2,9,3,18</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../textures/Enemy.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -511,6 +573,12 @@
             <filename>../textures/Explosion6.png</filename>
             <filename>../textures/Explosion7.png</filename>
             <filename>../textures/Enemy.png</filename>
+            <filename>../textures/Coin1.png</filename>
+            <filename>../textures/Coin2.png</filename>
+            <filename>../textures/Coin3.png</filename>
+            <filename>../textures/Coin4.png</filename>
+            <filename>../textures/Coin5.png</filename>
+            <filename>../textures/Coin6.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -21,6 +21,8 @@ bool QuitButton::ButtonClick()
 	{
 		if (!m_isClicked)
 		{
+			TheSoundManager::Instance()->playSound("click", 0);
+
 			TheGame::Instance()->quit();
 			m_isClicked = true;
 		}

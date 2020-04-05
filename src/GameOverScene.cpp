@@ -118,17 +118,17 @@ void GameOverScene::start()
 	m_pBackground = new Background();
 	addChild(m_pBackground);
 	
-	const SDL_Color white = { 255, 255, 255, 255 };
-	m_label = new Label("GAME OVER", "Consolas", 80, white, glm::vec2(400.0f, 60.0f));
+	const SDL_Color red = { 255, 10, 10, 255 };
+	m_label = new Label("GAME OVER", "BomberEscort", 80, red, glm::vec2(400.0f, 80.0f));
 	m_label->setParent(this);
 	addChild(m_label);
 
-	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "Consolas", 40, white, glm::vec2(400.0, 275.0f), 0, true);
+	m_score = new Label("Score: " + std::to_string(GameManager::Instance()->getScore()), "BomberEscort", 40, red, glm::vec2(400.0, 275.0f), 0, true);
 	m_score->setParent(this);
 	addChild(m_score);
 
 
-	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()), "Consolas", 40, white, glm::vec2(400.0f, 325.0f), 0, true);
+	m_enemiesDestroyed = new Label("Enemies Destroyed: " + std::to_string(GameManager::Instance()->getEnemiesDestroyed()) + "/" + std::to_string(GameManager::Instance()->getEnemiesCount()), "BomberEscort", 40, red, glm::vec2(400.0f, 325.0f), 0, true);
 	m_enemiesDestroyed->setParent(this);
 	addChild(m_enemiesDestroyed);
 

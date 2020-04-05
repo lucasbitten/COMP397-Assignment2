@@ -164,6 +164,7 @@
     <ClCompile Include="..\src\Bullet.cpp" />
     <ClCompile Include="..\src\BulletManager.cpp" />
     <ClCompile Include="..\src\Button.cpp" />
+    <ClCompile Include="..\src\Coin.cpp" />
     <ClCompile Include="..\src\CollisionManager.cpp" />
     <ClCompile Include="..\src\Controls.cpp" />
     <ClCompile Include="..\src\DisplayObject.cpp" />
@@ -207,10 +208,12 @@
     <ClInclude Include="..\include\IMGUI\imstb_truetype.h" />
     <ClInclude Include="..\include\IMGUI_SDL\imgui_sdl.h" />
     <ClInclude Include="..\src\Animation.h" />
+    <ClInclude Include="..\src\AuthorInfos.h" />
     <ClInclude Include="..\src\Background.h" />
     <ClInclude Include="..\src\Bullet.h" />
     <ClInclude Include="..\src\BulletManager.h" />
     <ClInclude Include="..\src\Button.h" />
+    <ClInclude Include="..\src\Coin.h" />
     <ClInclude Include="..\src\CollisionManager.h" />
     <ClInclude Include="..\src\CollisionShape.h" />
     <ClInclude Include="..\src\Config.h" />

@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "ExplosionManager.h"
 #include "BulletManager.h"
+#include "Coin.h"
 #include "Enemy.h"
 #include "FinishLevel.h"
 #include "Heart.h"
@@ -32,6 +33,8 @@ private:
 
 	void buildEnemies();
 	void checkCollisions();
+
+	std::vector<Coin*> m_pCoins;
 	
 	glm::vec2 m_mousePosition;
 

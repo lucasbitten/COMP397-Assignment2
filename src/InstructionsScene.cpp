@@ -114,8 +114,8 @@ void InstructionsScene::start()
 	m_pBackground = new Background();
 	addChild(m_pBackground);
 	
-	const SDL_Color white = { 255, 255, 255, 255 };
-	m_pStartLabel = new Label("Heli-Buffly", "Consolas", 80, white, glm::vec2(400.0f, 60.0f));
+	const SDL_Color red = { 255, 10, 10, 255 };
+	m_pStartLabel = new Label("Instructions", "BomberEscort", 80, red, glm::vec2(400.0f, 80.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
@@ -123,11 +123,11 @@ void InstructionsScene::start()
 	m_pControls->setPosition(150, 200);
 	addChild(m_pControls);
 	
-	m_pMoveLabel = new Label("MOVE", "Consolas", 40, white, glm::vec2(230, 370));
+	m_pMoveLabel = new Label("MOVE", "BomberEscort", 40, red, glm::vec2(230, 370));
 	m_pMoveLabel->setParent(this);
 	addChild(m_pMoveLabel);
 
-	m_pShootLabel = new Label("SHOOT", "Consolas", 40, white, glm::vec2(510, 370));
+	m_pShootLabel = new Label("SHOOT", "BomberEscort", 40, red, glm::vec2(510, 370));
 	m_pShootLabel->setParent(this);
 	addChild(m_pShootLabel);
 	

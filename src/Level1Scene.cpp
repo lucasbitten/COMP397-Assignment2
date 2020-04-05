@@ -31,12 +31,17 @@ void Level1Scene::update()
 
 	m_pBackground->update();
 	m_pFinishLevel->update();
+	
 	updateDisplayList();
+	
 	ExplosionManager::Instance()->update();
 	BulletManager::Instance()->update();
+	
 	m_pScoreLabel->setText("Score: " + std::to_string(TheGameManager::Instance()->getScore()));
 
 
+
+	
 	checkCollisions();
 
 
@@ -188,6 +193,9 @@ void Level1Scene::start()
 	
 	TheSoundManager::Instance()->load("../Assets/audio/laser.mp3",
 		"laser", sound_type::SOUND_SFX);
+
+	TheSoundManager::Instance()->load("../Assets/audio/Coin.mp3",
+		"coin", sound_type::SOUND_SFX);
 	
 	TheSoundManager::Instance()->load("../Assets/audio/Explosion.mp3",
 		"explosion", sound_type::SOUND_SFX);
@@ -200,7 +208,7 @@ void Level1Scene::start()
 	
 	const SDL_Color white = { 255, 255, 255, 255 };
 
-	m_pScoreLabel = new Label("Score: 000000", "Consolas", 20, white, glm::vec2(20, 20), 0, false);
+	m_pScoreLabel = new Label("Score: 000000", "BomberEscort", 20, white, glm::vec2(20, 20), 0, false);
 	addChild(m_pScoreLabel);
 
 	m_pFinishLevel = new FinishLevel();
@@ -213,8 +221,70 @@ void Level1Scene::start()
 		m_pPlayerHealth.push_back(heart);
 
 	}
+
+	for (int i = 0; i < 50; i++)
+	{		
+		auto coin = new Coin();
+
+		if (i < 5)
+		{
+			coin->setPosition(glm::vec2(700 + 35 * (i % 5), 120));
+
+		} else if (i < 10)
+		{
+			coin->setPosition(glm::vec2(1000 + 35 * (i % 5), 680));
+
+		} else if (i < 15)
+		{
+			coin->setPosition(glm::vec2(1500 + 35 * (i % 5), 440));
+
+		}
+		else if (i < 20)
+		{
+			coin->setPosition(glm::vec2(1500 + 35 * (i % 5), 480));
+
+		}
+		else if (i < 25)
+		{
+			coin->setPosition(glm::vec2(2200 + 35 * (i % 5), 120));
+
+		}
+		else if (i < 30)
+		{
+			coin->setPosition(glm::vec2(2200 + 35 * (i % 5), 160));
+
+		}
+
+		else if (i < 35)
+		{
+			coin->setPosition(glm::vec2(2800 + 35 * (i % 5), 420));
+
+		}
+		else if (i < 40)
+		{
+			coin->setPosition(glm::vec2(2800 + 35 * (i % 5), 380));
+
+		}
+
+		else if (i < 45)
+		{
+			coin->setPosition(glm::vec2(3500 + 35 * (i % 5), 120));
+
+		}
+		else if (i < 50)
+		{
+			coin->setPosition(glm::vec2(3500 + 35 * (i % 5), 160));
+
+		}
+		
+		m_pCoins.push_back(coin);
+		addChild(coin);
+
+	}
+
 	
 }
+
 
 void Level1Scene::buildEnemies()
 {
@@ -387,6 +457,12 @@ void Level1Scene::checkCollisions()
 		}
 
 	}
+
+	for (auto coin : m_pCoins)
+	{
+		CollisionManager::squaredRadiusCheck(m_pPlayer, coin);
+	}
+	
 
 	CollisionManager::squaredRadiusCheck(m_pPlayer, m_pPowerup);
 

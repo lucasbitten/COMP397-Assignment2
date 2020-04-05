@@ -21,6 +21,8 @@ bool BackToMenuButton::ButtonClick()
 	{
 		if(!m_isClicked)
 		{
+			TheSoundManager::Instance()->playSound("click", 0);
+
 			TheGame::Instance()->changeSceneState(SceneState::START_SCENE);
 			m_isClicked = true;
 		}

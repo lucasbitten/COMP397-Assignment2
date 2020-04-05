@@ -242,10 +242,10 @@ void Player::m_buildAnimations()
 
 void Player::m_checkBounds()
 {
-
-	if (getPosition().x >= (Config::SCREEN_WIDTH * 0.5f)- getWidth() * 0.5f)
+	//check right bounds
+	if (getPosition().x >= (Config::SCREEN_WIDTH * 0.7f)- getWidth() * 0.5f)
 	{
-		setPosition(glm::vec2((Config::SCREEN_WIDTH * 0.5f) - getWidth() * 0.5f, getPosition().y));
+		setPosition(glm::vec2((Config::SCREEN_WIDTH * 0.7f) - getWidth() * 0.5f, getPosition().y));
 	}
 
 	// check left bounds
@@ -254,12 +254,13 @@ void Player::m_checkBounds()
 		setPosition(glm::vec2(getWidth() * 0.5f, getPosition().y));
 	}
 
-	
+	// check bottom bounds
 	if (getPosition().y >= Config::SCREEN_HEIGHT - getHeight() * 0.5f)
 	{
 		setPosition(glm::vec2(getPosition().x, Config::SCREEN_HEIGHT - getHeight() * 0.5f));
 	}
 
+	// check top bounds
 	if (getPosition().y <= getHeight() * 0.5f)
 	{
 		setPosition(glm::vec2( getPosition().x, getHeight() * 0.5f));
